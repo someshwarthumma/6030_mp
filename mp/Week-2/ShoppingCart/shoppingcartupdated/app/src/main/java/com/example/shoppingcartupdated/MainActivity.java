@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         collection = new ArrayList<>();
         databaseProducts = FirebaseDatabase.getInstance().getReference("products");
-//        textview = (TextView) findViewById(R.id.data);
         final RecyclerView productList = (RecyclerView) findViewById(R.id.productList);
         productList.setLayoutManager(new LinearLayoutManager(this));
         extractIntent();
@@ -51,13 +50,17 @@ public class MainActivity extends AppCompatActivity {
                 GsonBuilder gsonBuilder = new GsonBuilder();
                 Gson gson = gsonBuilder.create();
                 Products prods = gson.fromJson(response, Products.class);
-//                for (ProductCollection product : prods.getProductCollection()) {
-//                    databaseProducts.child(product.getProductId()).setValue(product);
-//
-//                    Log.d("PRODUCT", product.getCategory() + " -- " + product.getProductId());
-////                    textview.setText(product.getProductId());
-//                }
-//                Toast.makeText(MainActivity.this, "Products Added", Toast.LENGTH_SHORT).show();
+                
+                /*This section of code is to store the data into the data base for the first time*/
+                /*
+               for (ProductCollection product : prods.getProductCollection()) {
+                   databaseProducts.child(product.getProductId()).setValue(product);
+
+                   Log.d("PRODUCT", product.getCategory() + " -- " + product.getProductId());
+                    textview.setText(product.getProductId());
+               }
+               Toast.makeText(MainActivity.this, "Products Added", Toast.LENGTH_SHORT).show();
+               */
 
                 databaseProducts.addValueEventListener(new ValueEventListener() {
                     @Override
